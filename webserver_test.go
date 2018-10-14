@@ -13,7 +13,7 @@ func TestSayHelloHandler(t *testing.T) {
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(sayHello)
+	handler := http.HandlerFunc(sayHelloHandler)
 	handler.ServeHTTP(rr, req)
 
 	if status := rr.Code; status != http.StatusOK {
@@ -28,6 +28,28 @@ func TestSayHelloHandler(t *testing.T) {
 	}
 }
 
+func TestVersionHandler(t *testing.T) {
+	req, err := http.NewRequest("GET", "/", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(versionHandler)
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("handler returned wrong status code: got %v want %v",
+			status, http.StatusOK)
+	}
+
+	expected := versionInfo.version + ", " +versionInfo.commit + ", " + versionInfo.buildstamp
+	if rr.Body.String() != expected {
+		t.Errorf("handler returned unexpected body: got %v want %v",
+			rr.Body.String(), expected)
+	}
+}
+
 func TestHealthProbeHandler(t *testing.T) {
 	req, err := http.NewRequest("GET", "/health", nil)
 	if err != nil {
@@ -35,7 +57,7 @@ func TestHealthProbeHandler(t *testing.T) {
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(healthProbe)
+	handler := http.HandlerFunc(healthProbeHandler)
 	handler.ServeHTTP(rr, req)
 
 	if status := rr.Code; status != http.StatusOK {
@@ -57,7 +79,7 @@ func TestReadyProbeHandler(t *testing.T) {
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(readyProbe)
+	handler := http.HandlerFunc(readyProbeHandler)
 	handler.ServeHTTP(rr, req)
 
 	if status := rr.Code; status != http.StatusOK {
