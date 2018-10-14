@@ -1,16 +1,15 @@
 package main
 
 import (
+	"log"
 	"net/http"
 )
 
-type versionStruct struct {
-	version string
-	commit string
-	buildstamp string
-}
-
-var versionInfo = versionStruct{"undefined","undefined", "undefined"}
+var (
+	version string = "dev"
+	commit  string = "none"
+	date    string = "unknown"
+)
 
 func sayHelloHandler(w http.ResponseWriter, r *http.Request) {
 	message := "Hello World!"
@@ -36,10 +35,12 @@ func readyProbeHandler(w http.ResponseWriter, r *http.Request) {
 func versionHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/plain")
-	w.Write([]byte(versionInfo.version + ", " +versionInfo.commit + ", " + versionInfo.buildstamp))
+	w.Write([]byte(version + " " + commit + " " + date))
 }
 
 func main() {
+	log.Printf("%v, commit %v, built at %v", version, commit, date)
+
 	http.HandleFunc("/version", versionHandler)
 	http.HandleFunc("/health", healthProbeHandler)
 	http.HandleFunc("/ready", readyProbeHandler)

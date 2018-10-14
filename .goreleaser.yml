@@ -1,0 +1,87 @@
+project_name: goreleaser-test
+
+builds:
+- goos:
+  - linux
+  - darwin
+  - windows
+  goarch:
+  - amd64
+  main: k8s-serv.go
+  binary: k8s-serv
+  ldflags: -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}}
+- env:
+  - CGO_ENABLED=0
+
+archive:
+  format: tar.gz
+  replacements:
+    amd64: 64-bit
+    darwin: macOS
+    linux: Tux
+  files:
+  - README*
+  - LICENSE
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  name_template: "{{ .Tag }}-next"
+
+release:
+  draft: false
+  github:
+    owner: sklevenz
+    name: k8s-serv
+    api_url: https://api.github.com/
+    uploads_url: https://uploads.github.com/
+    download_url: https://github.com/
+
+brew:
+  folder: Formula
+  caveats: "How to use this binary"
+  homepage: "https://github.com/sklevenz/k8s-serv"
+  description: "Learning github, travis, go, k8s, docker ..."
+  test: |
+    system "#{bin}/k8s-serv"
+  install: |
+    bin.install "k8s-serv"
+  github:
+    owner: sklevenz
+    name: homebrew-skl
+    api_url: https://api.github.com/
+    uploads_url: https://uploads.github.com/
+download_url: https://github.com/
+
+
+
+## This is an example goreleaser.yaml file with some sane defaults.
+## Make sure to check the documentation at http://goreleaser.com
+#before:
+#   hooks:
+#
+#builds:
+#- env:
+#  - CGO_ENABLED=0
+#
+#archive:
+#  replacements:
+#    darwin: Darwin
+#    linux: Linux
+#    windows: Windows
+#    386: i386
+#    amd64: x86_64
+#
+#checksum:
+#  name_template: 'checksums.txt'
+#
+#snapshot:
+#  name_template: "{{ .Tag }}-next"
+#
+#changelog:
+#  sort: asc
+#  filters:
+#    exclude:
+#    - '^docs:'
+#    - '^test:'

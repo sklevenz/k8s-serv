@@ -43,7 +43,7 @@ func TestVersionHandler(t *testing.T) {
 			status, http.StatusOK)
 	}
 
-	expected := versionInfo.version + ", " +versionInfo.commit + ", " + versionInfo.buildstamp
+	expected := version + " " + commit + " " + date
 	if rr.Body.String() != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			rr.Body.String(), expected)
