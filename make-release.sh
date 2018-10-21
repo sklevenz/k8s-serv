@@ -9,7 +9,7 @@ if [ "$VERSION" == "" ]; then
     exit 0
 fi
 
-# git tag -a $VERSION
-# git push origin $VERSION
-# goreleaser --rm-dist
+ git tag -a $VERSION -m "new release version: $VERSION"
+ git push origin $VERSION
+ goreleaser --rm-dist
 

@@ -38,6 +38,7 @@ curl -sS http://localhost:8080/version
 build release
 ```
 export GITHUB_TOKEN=`YOUR_TOKEN`
+git tag -l 'v*'
 git tag -a v0.1.0 -m "First release"
 git push origin v0.1.0
 goreleaser
@@ -45,8 +46,7 @@ goreleaser
 
 try out release
 ```
-brew update
-brew install sklevenz/skl/k8s-serv
+brew update ; brew install sklevenz/skl/k8s-serv
 
 k8s-serv
 curl -sS http://localhost:8080/version
