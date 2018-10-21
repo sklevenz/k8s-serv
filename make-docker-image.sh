@@ -12,3 +12,4 @@ fi
 docker build -t sklevenz/k8s-serv:$VERSION --build-arg VERSION=$VERSION .
 docker build -t sklevenz/k8s-serv:latest --build-arg VERSION=$VERSION .
 
+docker push sklevenz/k8s-serv
