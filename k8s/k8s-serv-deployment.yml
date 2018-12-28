@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: k8s-serv
-        image: sklevenz/k8s-serv:0.3.0
+        image: sklevenz/k8s-serv:0.5.0
         ports:
         - containerPort: 8080
