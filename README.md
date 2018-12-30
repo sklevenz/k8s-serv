@@ -17,7 +17,7 @@ go build ./...
 ```
 build with version info:
 ```
-go build -ldflags "-X main.version=0.0.0 -X main.commit=`git rev-parse HEAD` -X main.buildstamp=`date -u +%Y%m%d.%H%M%S`" k8s-serv.go
+go build -ldflags "-X main.version=0.0.0 -X main.commit=`git rev-parse HEAD` -X main.date=`date -u +%Y%m%d.%H%M%S`" k8s-serv.go
 ```
 
 test with:

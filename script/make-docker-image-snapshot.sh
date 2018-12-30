@@ -10,7 +10,7 @@ if [ "$VERSION" == "" ]; then
     exit 0
 fi
 
-env GOOS=linux GOARCH=386 go build -o k8s-serv-386
+env GOOS=linux GOARCH=386 go build -ldflags "-X main.version=$VERSION -X main.commit=`git rev-parse HEAD` -X main.date=`date -u +%Y%m%d.%H%M%S`" -o k8s-serv-386
 
 pushd "$SOURCE/../docker/snapshot"
   cp ../../k8s-serv-386 k8s-serv
