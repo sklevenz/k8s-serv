@@ -15,6 +15,7 @@ spec:
     spec:
       containers:
       - name: k8s-serv
+        imagePullPolicy: Always
         image: sklevenz/k8s-serv:latest
         ports:
         - containerPort: 8080
