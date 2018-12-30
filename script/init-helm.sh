@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-helm init --upgrade
+SOURCE="${0%/*}"
 
+helm init --upgrade

@@ -65,3 +65,41 @@ run docker image
 docker run -p 8080:8080 sklevenz/k8s-serv
 curl -sS http://localhost:8080/version
 ```
+
+# k8s support
+
+## deploy dashboard
+
+````
+./script/dashboard-apply.sh
+./script/dashboard-delete.sh
+````
+
+
+## snapshots
+
+````
+git checkout -b 0.x.0-snapshot
+./script/make-docker-image-snapshot.sh 0.x.0-snapshot
+
+./script/set-namespace-snapshot.sh
+./script/k8s-serv-apply-snapshot.sh
+
+curl -sS http://localhost:8081/version
+
+./script/k8s-serv-delete-namespace-snapshot.sh
+````
+
+## production
+
+````
+git checkout master
+./script/make-docker-image-snapshot.sh 0.x.0
+
+./script/set-namespace-production.sh
+./script/k8s-serv-apply-production.sh
+
+curl -sS http://localhost:8080/version
+
+./script/k8s-serv-delete-namespace-production.sh
+````
