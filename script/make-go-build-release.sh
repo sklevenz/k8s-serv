@@ -6,7 +6,7 @@ SOURCE="${0%/*}"
 VERSION=$1
 
 if [ "$VERSION" == "" ]; then
-    echo Usage: make-release VERSION
+    echo Usage: make-go-build-release VERSION
     exit 0
 fi
 

@@ -6,7 +6,7 @@ SOURCE="${0%/*}"
 VERSION=$1
 
 if [ "$VERSION" == "" ]; then
-    echo Usage: make-docker-image VERSION
+    echo Usage: make-docker-image-production VERSION
     exit 0
 fi
 

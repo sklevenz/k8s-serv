@@ -1,5 +1,7 @@
 FROM ubuntu:cosmic
 
+ARG VERSION=dev
+
 RUN apt-get update && apt-get install -y wget
 
 RUN mkdir /var/k8s-serv && cd /var/k8s-serv

@@ -38,7 +38,7 @@ build release
 ```
 export GITHUB_TOKEN=`YOUR_TOKEN`
 
-./make-release.sh 0.1.0
+./make--go-build-release.sh 0.1.0
 
 ```
 try out release
@@ -56,13 +56,15 @@ curl -sS http://localhost:8080/version
 build docker image
 
 ```
-./make-docker-image.sh 0.1.0
+./make-docker-image-snapshot.sh 0.1.0-snapshot
+./make-docker-image-production.sh 0.1.0
 ```
 
 run docker image
 
 ```
-docker run -p 8080:8080 sklevenz/k8s-serv
+docker run -p 8080:8080 sklevenz/k8s-serv:snapshot
+docker run -p 8080:8080 sklevenz/k8s-serv:latest
 curl -sS http://localhost:8080/version
 ```
 
