@@ -7,6 +7,8 @@ A simple server in go to play with k8s, helm ...
 - add version support
 - add goreleaser support
 - add docker support
+- add k8s support
+- add helm support
 
 # build instructions
 
@@ -104,4 +106,14 @@ git checkout master
 curl -sS http://localhost:8080/version
 
 ./script/k8s-serv-delete-namespace-production.sh
+````
+
+# helm support
+
+````
+./script/set-namespace-production.sh
+helm install  k8s-serv-chart
+
+./script/set-namespace-snapshot.sh
+helm install --values=k8s-serv-chart/values-snapshot.yaml k8s-serv-chart
 ````

@@ -4,13 +4,13 @@
 
 replicaCount: 2
 
-namespace: k8s-serv-production
+namespace: k8s-serv-snapshot
 
 image:
-  tag: latest
+  tag: snapshot
 
 service:
-  port: 8080
+  port: 8081
 
 ingress:
   enabled: false
