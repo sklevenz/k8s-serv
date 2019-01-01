@@ -9,6 +9,7 @@ A simple server in go to play with k8s, helm ...
 - add docker support
 - add k8s support
 - add helm support
+- add test support
 
 # build instructions
 
@@ -116,4 +117,10 @@ helm install  k8s-serv-chart
 
 ./script/set-namespace-snapshot.sh
 helm install --values=k8s-serv-chart/values-snapshot.yaml k8s-serv-chart
+````
+
+# test support
+
+````
+./script/test.sh
 ````
