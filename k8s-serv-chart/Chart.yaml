@@ -1,0 +1,7 @@
+apiVersion: v1
+appVersion: "1.0"
+description: A Helm chart for Kubernetes running k8s-serv
+name: k8s-serv-chart
+version: 0.1.0
+home: https://github.com/sklevenz/k8s-serv
+icon: http://klaeff.de/www.klaeff.de/Home_files/shapeimage_2.png

@@ -16,6 +16,8 @@ func sayHelloHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/plain")
 	w.Write([]byte(message))
+
+	log.Printf("URL %v called by %v", r.URL, r.RemoteAddr)
 }
 
 func healthProbeHandler(w http.ResponseWriter, r *http.Request) {
@@ -23,6 +25,8 @@ func healthProbeHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/plain")
 	w.Write([]byte(message))
+
+	log.Printf("URL %v called by %v", r.URL, r.RemoteAddr)
 }
 
 func readyProbeHandler(w http.ResponseWriter, r *http.Request) {
@@ -30,12 +34,16 @@ func readyProbeHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/plain")
 	w.Write([]byte(message))
+
+	log.Printf("URL %v called by %v", r.URL, r.RemoteAddr)
 }
 
 func versionHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/plain")
 	w.Write([]byte(version + " " + commit + " " + date))
+
+	log.Printf("URL %v called by %v", r.URL, r.RemoteAddr)
 }
 
 func main() {

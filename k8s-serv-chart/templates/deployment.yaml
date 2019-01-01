@@ -1,0 +1,21 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: k8s-serv-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: k8s-serv
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: k8s-serv
+    spec:
+      containers:
+      - name: k8s-serv
+        imagePullPolicy: Always
+        image: sklevenz/k8s-serv:{{ .Values.image.tag }}
+        ports:
+        - containerPort: 8080
